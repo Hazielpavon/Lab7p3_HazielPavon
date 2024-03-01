@@ -11,16 +11,28 @@ double CuentadeAhorro::gettasa() const
 
 void CuentadeAhorro::settasa(int Numerodecuenta)
 {
-	this->tasa = tasa; 
+	this->tasa = tasa;
 }
 
 void CuentadeAhorro::depositar(double monto)
 {
 
+	double bono = monto * (tasa / 100.0);
+
+	setbalance((getbalance() + monto) + bono);
+
 }
 
 void CuentadeAhorro::retirar(double monto)
 {
+	if (getbalance() < monto) {
+		cout << "No tiene el balance suficiente" << endl; 
+	}
+	else {
+		setbalance(getbalance() + monto); 
+	}
+
+
 }
 
 CuentadeAhorro::~CuentadeAhorro()

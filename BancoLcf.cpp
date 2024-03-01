@@ -6,24 +6,17 @@ using namespace std;
 #include <vector>  
 #include <memory.h>
 
-BancoLcf::BancoLcf(double balance, int Numerodecuenta, string nombre, int tipodecuenta) :
+BancoLcf::BancoLcf()
+{
+}
 
-	CuentaBancaria(balance, Numerodecuenta, nombre), tipodecuenta(tipodecuenta)
+BancoLcf::BancoLcf(double balance, int Numerodecuenta, string nombre) :
+
+	CuentaBancaria(balance, Numerodecuenta, nombre)
 {}
-
-int BancoLcf::gettipodecuenta() const 
-{
-	return tipodecuenta;
-}
-
-void BancoLcf::setipodecuenta(int tipodecuenta)
-{
-	this->tipodecuenta = tipodecuenta; 
-}
-
 vector<CuentaBancaria*> BancoLcf::getcuentasbancarias()
 {
-	return vector<CuentaBancaria*>();
+	return cuentasbancarias;
 }
 
 void BancoLcf::setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias)
@@ -33,14 +26,32 @@ void BancoLcf::setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias)
 
 void BancoLcf::agregarcuenta(CuentaBancaria* cuenta)
 {
+	cuentasbancarias.push_back(cuenta); 
 }
 
 void BancoLcf::eliminarcuenta(int numcuenta)
 {
-}
+    cout << "Ingrese el indice del vehiculo que desea eliminar: ";
+    int indice;
+    cin >> indice;
+    if (indice >= 0 && indice < cuentasbancarias.size()) {
+        cuentasbancarias.erase(cuentasbancarias.begin() + indice+1);
+        cout << "Cuenta eliminada correctamente." << endl;
+    }
+    else {
+        cout << "Indice fuera de rango." << endl;
+    }
 
+}
 void BancoLcf::mostrarcuentas()
 {
+	for (int i = 0; i < cuentasbancarias.size(); i++)
+	{
+		cout << "Usuario: " << i << endl; 
+		cout << "Nombre: " << cuentasbancarias[i]->getNombre() << endl;
+		cout << "Numero De cuenta: " << cuentasbancarias[i]->getNumerodecuenta() << endl;
+		cout << "Balance: " << cuentasbancarias[i]->getNumerodecuenta() << endl;
+	}
 }
 
 BancoLcf::~BancoLcf()

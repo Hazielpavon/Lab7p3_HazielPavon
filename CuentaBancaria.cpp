@@ -2,6 +2,9 @@
 using namespace std; 
 #include <iostream>
 #include <string>
+CuentaBancaria::CuentaBancaria()
+{
+}
 CuentaBancaria::CuentaBancaria(double balance, int Numerodecuenta, string nombre) :
 
 	balance(balance), Numerodecuenta(Numerodecuenta), Nombre(nombre)

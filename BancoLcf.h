@@ -11,9 +11,8 @@ private :
 	vector <CuentaBancaria*> cuentasbancarias; 
 	int tipodecuenta; 
 public : 
-	BancoLcf(double balance, int Numerodecuenta, string nombre, int tipodecuenta); 
-	int gettipodecuenta()const; 
-	void setipodecuenta(int tipodecuenta); 
+	BancoLcf();
+	BancoLcf(double balance, int Numerodecuenta, string nombre); 
 	vector<CuentaBancaria*> getcuentasbancarias();
 	void setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias);
 	void agregarcuenta(CuentaBancaria* cuenta); 

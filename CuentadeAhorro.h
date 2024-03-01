@@ -5,9 +5,9 @@ using namespace std;
 #include <string>
 class CuentadeAhorro : public CuentaBancaria 
 {
-public : 
-	double tasa; 
 private : 
+	double tasa; 
+public : 
 	CuentadeAhorro(double balance, int Numerodecuenta, string nombre, double tasa);
 	double gettasa() const;
 	void settasa(int Numerodecuenta);

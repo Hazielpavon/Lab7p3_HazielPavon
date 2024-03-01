@@ -22,10 +22,17 @@ void CuentadeCheque::setsobregiro(int Numerodecuenta)
 
 void CuentadeCheque::depositar(double monto)
 {
+	setbalance(getbalance()+monto);
 }
 
 void CuentadeCheque::retirar(double monto)
 {
+	if (getbalance() < monto) {
+		setbalance((getbalance() - monto)-sobregiro);
+	}
+	else {
+		setbalance((getbalance() - monto));
+	}
 }
 
 CuentadeCheque::~CuentadeCheque()

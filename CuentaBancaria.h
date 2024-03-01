@@ -9,7 +9,7 @@ private:
 	int Numerodecuenta; 
 	string Nombre; 
 public:
-
+	CuentaBancaria();
 	CuentaBancaria(double balance, int Numerodecuenta, string nombre); 
 	~CuentaBancaria(); 
 	double getbalance() const; 
