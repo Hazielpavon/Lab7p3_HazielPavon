@@ -8,8 +8,18 @@ using namespace std;
 
 BancoLcf::BancoLcf(double balance, int Numerodecuenta, string nombre, int tipodecuenta) :
 
-	CuentasBancarias(balance, Numerodecuenta, nombre), tipodecuenta(tipodecuenta)
+	CuentaBancaria(balance, Numerodecuenta, nombre), tipodecuenta(tipodecuenta)
 {}
+
+int BancoLcf::gettipodecuenta()
+{
+	return tipodecuenta;
+}
+
+void BancoLcf::setipodecuenta(int tipodecuenta)
+{
+	this->tipodecuenta = tipodecuenta; 
+}
 
 vector<CuentaBancaria*> BancoLcf::getcuentasbancarias()
 {
@@ -18,6 +28,7 @@ vector<CuentaBancaria*> BancoLcf::getcuentasbancarias()
 
 void BancoLcf::setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias)
 {
+	this->cuentasbancarias = cuentasbancarias; 
 }
 
 void BancoLcf::agregarcuenta(CuentaBancaria* cuenta)
@@ -34,4 +45,8 @@ void BancoLcf::mostrarcuentas()
 
 BancoLcf::~BancoLcf()
 {
+	for (auto CuentaBancaria : cuentasbancarias) {
+		delete CuentaBancaria;
+	}
+	tipodecuenta = 0; 
 }

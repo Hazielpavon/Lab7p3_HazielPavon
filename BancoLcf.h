@@ -9,9 +9,11 @@ class BancoLcf : public CuentaBancaria
 {
 private : 
 	vector <CuentaBancaria*> cuentasbancarias; 
-
+	int tipodecuenta; 
 public : 
 	BancoLcf(double balance, int Numerodecuenta, string nombre, int tipodecuenta); 
+	int gettipodecuenta(); 
+	void setipodecuenta(int tipodecuenta); 
 	vector<CuentaBancaria*> getcuentasbancarias();
 	void setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias);
 	void agregarcuenta(CuentaBancaria* cuenta); 
