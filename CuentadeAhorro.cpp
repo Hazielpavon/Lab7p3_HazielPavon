@@ -16,6 +16,7 @@ void CuentadeAhorro::settasa(int Numerodecuenta)
 
 void CuentadeAhorro::depositar(double monto)
 {
+
 }
 
 void CuentadeAhorro::retirar(double monto)

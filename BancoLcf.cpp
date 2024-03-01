@@ -11,7 +11,7 @@ BancoLcf::BancoLcf(double balance, int Numerodecuenta, string nombre, int tipode
 	CuentaBancaria(balance, Numerodecuenta, nombre), tipodecuenta(tipodecuenta)
 {}
 
-int BancoLcf::gettipodecuenta()
+int BancoLcf::gettipodecuenta() const 
 {
 	return tipodecuenta;
 }
