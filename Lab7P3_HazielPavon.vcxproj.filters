@@ -18,5 +18,37 @@
     <ClCompile Include="Lab7P3_HazielPavon.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CuentaBancaria.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CuentadeAhorro.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CuentadeCheque.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transaccion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BancoLcf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CuentaBancaria.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CuentadeAhorro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CuentadeCheque.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transaccion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BancoLcf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
