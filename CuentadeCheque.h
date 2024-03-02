@@ -6,7 +6,7 @@ using namespace std;
 class CuentadeCheque : public CuentaBancaria 
 {
 private:
-	double sobregiro; 
+	double sobregiro = 0.0; 
 public: 
 	CuentadeCheque(double balance, int Numerodecuenta, string nombre, double sobregiro);
 	double getsobregiro() const;

@@ -5,15 +5,15 @@ using namespace std;
 class CuentaBancaria
 {
 private:
-	double balance;
-	int Numerodecuenta; 
-	string Nombre; 
+	double balance = 0.0;
+	int Numerodecuenta = 0; 
+	string Nombre = " ";
 public:
 	CuentaBancaria();
 	CuentaBancaria(double balance, int Numerodecuenta, string nombre); 
 	~CuentaBancaria(); 
 	double getbalance() const; 
-	void setbalance(int balance); 
+	void setbalance(double balance); 
 	int getNumerodecuenta() const;
 	void setNumerodecuenta(int Numerodecuenta);
 	string getNombre() const;

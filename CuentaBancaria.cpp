@@ -5,7 +5,7 @@ using namespace std;
 CuentaBancaria::CuentaBancaria()
 {
 }
-CuentaBancaria::CuentaBancaria(double balance, int Numerodecuenta, string nombre) :
+CuentaBancaria::CuentaBancaria(double balance = 0.0, int Numerodecuenta = 0, string nombre= " ") :
 
 	balance(balance), Numerodecuenta(Numerodecuenta), Nombre(nombre)
 
@@ -23,7 +23,7 @@ double CuentaBancaria::getbalance() const
 	return balance;
 }
 
-void CuentaBancaria::setbalance(int balance)
+void CuentaBancaria::setbalance(double balance)
 {
 	this->balance = balance; 
 }

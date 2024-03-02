@@ -10,7 +10,7 @@ BancoLcf::BancoLcf()
 {
 }
 
-BancoLcf::BancoLcf(double balance, int Numerodecuenta, string nombre) :
+BancoLcf::BancoLcf(double balance = 0.0, int Numerodecuenta=0, string nombre= " ") :
 
 	CuentaBancaria(balance, Numerodecuenta, nombre)
 {}
@@ -29,9 +29,9 @@ void BancoLcf::agregarcuenta(CuentaBancaria* cuenta)
 	cuentasbancarias.push_back(cuenta); 
 }
 
-void BancoLcf::eliminarcuenta(int numcuenta)
+void BancoLcf::eliminarcuenta()
 {
-    cout << "Ingrese el indice del vehiculo que desea eliminar: ";
+    cout << "Ingrese el indice de la cuenta que desea eliminar: ";
     int indice;
     cin >> indice;
     if (indice >= 0 && indice < cuentasbancarias.size()) {

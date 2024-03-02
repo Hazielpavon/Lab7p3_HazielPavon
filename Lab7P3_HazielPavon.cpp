@@ -35,7 +35,7 @@ void ejercicio1() {
 			double balance = 0.0;
 			double tasa = 0.0;
 			double sobregiro = 0.0;
-			BancoLcf* banco;
+			BancoLcf* banco = {};
 			// validando la opcion correcta 
 			while (!vali1) {
 				cout << "Ingrese que tipo de cuenta desea 1) Ahorro, 2)Cheque" << endl;
@@ -112,7 +112,7 @@ void ejercicio1() {
 						vali2 = true;
 					}
 				}
-				// validando el balance 
+				// validando el balance // llegue dku 
 				while (!vali3) {
 					cout << "Ingrese su balance: " << endl;
 					balance = 0.0;
@@ -124,7 +124,10 @@ void ejercicio1() {
 						vali3 = true;
 					}
 				}
-				// validando el sobregiro 
+
+				// llegue a las 18:20 no me dejo hacer el commit justo a esa hora 
+
+				   // validando el sobregiro 
 				while (!vali4) {
 					cout << "Ingrese el sobregiro: " << endl;
 					tasa = 0.0;
@@ -136,29 +139,75 @@ void ejercicio1() {
 				CuentaBancaria* cuentaCheque = new CuentadeCheque(balance, numerodecuenta, nombre, sobregiro);
 				banco->agregarcuenta(cuentaCheque);
 			}
-		}
-			  break;
-
-		case 2:
-
 			break;
+		}
+		case 2: {
+			BancoLcf* banco = {}; 
+			banco->mostrarcuentas(); 
+
+			cout << "Seleccione el numero de la cuenta en la que desea realizar el deposito: ";
+			int opcionCuenta;
+			cin >> opcionCuenta;
+			opcionCuenta--;
+
+			if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
+				double monto;
+				cout << "Ingrese el monto que desea depositar: ";
+				cin >> monto;
+				CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
+				Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Deposito", cuentaSeleccionada);
+				Tran->ejecutarTransaccion(); 
+			}
+			else {
+				cout << "Opción de cuenta inválida." << endl;
+			}
+			break;
+		}
 
 		case 3:
+		{
+			BancoLcf* banco = {};
+			banco->mostrarcuentas();
 
+			cout << "Seleccione el numero de la cuenta en la que desea realizar el retiro: ";
+			int opcionCuenta;
+			cin >> opcionCuenta;
+			opcionCuenta--;
+
+			if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
+				double monto;
+				cout << "Ingrese el monto que desea retirar: ";
+				cin >> monto;
+				CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
+				Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Retiro", cuentaSeleccionada);
+				Tran->ejecutarTransaccion();
+			}
+			else {
+				cout << "Opción de cuenta inválida." << endl;
+			}
+			break;
+		}
+
+		case 4: {
+
+
+			BancoLcf* banco = {};
+
+			banco->mostrarcuentas();
+		}
 			break;
 
-		case 4:
+		case 5: {
+			BancoLcf* banco = {};
 
-			break;
-
-		case 5:
-
-			break;
+			banco->eliminarcuenta();
+		}
 
 		case 6:
 			cout << "Saliendo..." << endl;
 			seguir = false;
 			break;
+
 		default:
 			cout << "Ingrese una opcion valida" << endl;
 			break;

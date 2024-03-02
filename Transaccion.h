@@ -4,49 +4,51 @@ using namespace std;
 #include <iostream>
 #include <string>
 template <class T>
-class Transaccion : public CuentaBancaria
-{
+class Transaccion {
 private:
 	double monto;
 	string tipo;
-	T* cuenta = CuentaBancaria;
-
+	T* cuenta;
 
 public:
-	Transaccion(double balance, int Numerodecuenta, string nombre, double monto, string tipo, T* cuenta = CuentaBancaria) :
-		CuentaBancaria(balance, Numerodecuenta, nombre), monto(monto), tipo(tipo), cuenta(cuenta)
-	{}
-	double getmonto() {
+	Transaccion(double monto, string tipo, T* cuenta) : monto(monto), tipo(tipo), cuenta(cuenta) {}
+
+	void ejecutarTransaccion() {
+		if (tipo == "Deposito") {
+			cuenta->depositar(monto);
+		}
+		else if (tipo == "Retiro") {
+			cuenta->retirar(monto);
+		}
+		else {
+			cout << "Tipo de transacción inválido." << endl;
+		}
+	}
+
+	double getMonto() const {
 		return monto;
 	}
-	void setmonto() {
+	void setMonto(double monto) {
 		this->monto = monto;
 	}
 
-	string gettipo() {
+	string getTipo() const {
 		return tipo;
 	}
-
-	void settipo() {
+	void setTipo(string tipo) {
 		this->tipo = tipo;
 	}
 
-	T* getcuenta() {
+	T* getCuenta() const {
 		return cuenta;
 	}
-	void setT(T* cuenta) {
+	void setCuenta(T* cuenta) {
 		this->cuenta = cuenta;
 	}
-	void ejecutarTransaccion() {
-		if (tipo == "Deposito") {
-			T* cuenta = nullptr->depositar();
-		}
-		else {
-			T* cuenta = nullptr->retirar();
-		}
-	}
-	~Transaccion() {
-		delete[] cuenta; 
+
+	virtual ~Transaccion() {
+		delete cuenta;
 	}
 };
+
 
