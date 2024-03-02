@@ -7,10 +7,11 @@ using namespace std;
 #include "CuentadeCheque.h"
 #include "CuentadeAhorro.h"
 
+BancoLcf* banco = new BancoLcf();
 
 void ejercicio1() {
 	bool seguir = true;
-
+	int contador = 0;
 	while (seguir) {
 		cout << "--- Banco LCF ---" << endl;
 		cout << "1. Crear Cuenta" << endl;
@@ -22,6 +23,7 @@ void ejercicio1() {
 		cout << "Ingrese una opcion: ";
 		int opcion;
 		cin >> opcion;
+		
 
 		switch (opcion) {
 		case 1: {
@@ -35,7 +37,7 @@ void ejercicio1() {
 			double balance = 0.0;
 			double tasa = 0.0;
 			double sobregiro = 0.0;
-			BancoLcf* banco = {};
+
 			// validando la opcion correcta 
 			while (!vali1) {
 				cout << "Ingrese que tipo de cuenta desea 1) Ahorro, 2)Cheque" << endl;
@@ -50,9 +52,11 @@ void ejercicio1() {
 			}
 			// cuenta de ahorros 
 			if (tipo == 1) {
+				contador++;
 				cout << "Ingrese su nombre: " << endl;
 				nombre = " ";
-				cin >> nombre;
+				cin.ignore();  
+				getline(cin, nombre);
 				while (!vali2) {
 					cout << "Ingrese su numero de cuenta: " << endl;
 					numerodecuenta = 0;
@@ -84,16 +88,21 @@ void ejercicio1() {
 					if (tasa < 9 || tasa >21) {
 						cout << "la tasa debe estar entre 10 y 20" << endl;
 					}
+					else {
+						vali4 = true; 
+					}
 				}
 				CuentaBancaria* cuentaahorro = new CuentadeAhorro(balance, numerodecuenta, nombre, tasa);
 				banco->agregarcuenta(cuentaahorro);
+
 			}
 			//cheque 
 			else {
-				vali1 = false;
-				vali2 = false;
-				vali3 = false;
-				vali4 = false;
+				contador++;
+				bool vali11 = false;
+				bool vali22 = false;
+				bool vali33 = false;
+				bool vali44 = false;
 				string nombre = " ";
 				int numerodecuenta = 0;
 				double balance = 0.0;
@@ -101,7 +110,7 @@ void ejercicio1() {
 				cout << "Ingrese su nombre: " << endl;
 				nombre = " ";
 				cin >> nombre;
-				while (!vali2) {
+				while (!vali22) {
 					cout << "Ingrese su numero de cuenta: " << endl;
 					numerodecuenta = 0;
 					cin >> numerodecuenta;
@@ -109,11 +118,11 @@ void ejercicio1() {
 						cout << "El numero de cuente debe ser mayor a 1000 y menor que 9999" << endl;
 					}
 					else {
-						vali2 = true;
+						vali22 = true;
 					}
 				}
 				// validando el balance // llegue dku 
-				while (!vali3) {
+				while (!vali33) {
 					cout << "Ingrese su balance: " << endl;
 					balance = 0.0;
 					cin >> balance;
@@ -121,19 +130,22 @@ void ejercicio1() {
 						cout << "El balance debe ser mayor a 0 y menor a 100,000 L." << endl;
 					}
 					else {
-						vali3 = true;
+						vali33 = true;
 					}
 				}
 
 				// llegue a las 18:20 no me dejo hacer el commit justo a esa hora 
 
 				   // validando el sobregiro 
-				while (!vali4) {
+				while (!vali44) {
 					cout << "Ingrese el sobregiro: " << endl;
 					tasa = 0.0;
 					cin >> tasa;
 					if (tasa < 99 || tasa >351) {
 						cout << "El sobregiro debe estar entre 100 y 350" << endl;
+					}
+					else {
+						vali44 = true; 
 					}
 				}
 				CuentaBancaria* cuentaCheque = new CuentadeCheque(balance, numerodecuenta, nombre, sobregiro);
@@ -142,67 +154,77 @@ void ejercicio1() {
 			break;
 		}
 		case 2: {
-			BancoLcf* banco = {}; 
-			banco->mostrarcuentas(); 
+			if (contador != 0) {
+				banco->mostrarcuentas();
 
-			cout << "Seleccione el numero de la cuenta en la que desea realizar el deposito: ";
-			int opcionCuenta;
-			cin >> opcionCuenta;
-			opcionCuenta--;
+				cout << "Seleccione el numero de la cuenta en la que desea realizar el deposito: ";
+				int opcionCuenta;
+				cin >> opcionCuenta;
+				opcionCuenta--;
 
-			if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
-				double monto;
-				cout << "Ingrese el monto que desea depositar: ";
-				cin >> monto;
-				CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
-				Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Deposito", cuentaSeleccionada);
-				Tran->ejecutarTransaccion(); 
+				if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
+					double monto;
+					cout << "Ingrese el monto que desea depositar: ";
+					cin >> monto;
+					CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
+					Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Deposito", cuentaSeleccionada);
+					Tran->ejecutarTransaccion();
+				}
+				else {
+					cout << "Opcion de cuenta invalida." << endl;
+				}
+				break;
 			}
 			else {
-				cout << "Opción de cuenta inválida." << endl;
+				cout << "Debe crear un usuario primero" << endl;
 			}
-			break;
 		}
 
 		case 3:
 		{
-			BancoLcf* banco = {};
-			banco->mostrarcuentas();
+			if (contador != 0) {
+				banco->mostrarcuentas();
 
-			cout << "Seleccione el numero de la cuenta en la que desea realizar el retiro: ";
-			int opcionCuenta;
-			cin >> opcionCuenta;
-			opcionCuenta--;
+				cout << "Seleccione el numero de la cuenta en la que desea realizar el retiro: ";
+				int opcionCuenta;
+				cin >> opcionCuenta;
+				opcionCuenta--;
 
-			if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
-				double monto;
-				cout << "Ingrese el monto que desea retirar: ";
-				cin >> monto;
-				CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
-				Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Retiro", cuentaSeleccionada);
-				Tran->ejecutarTransaccion();
+				if (opcionCuenta >= 0 && opcionCuenta < banco->getcuentasbancarias().size()) {
+					double monto;
+					cout << "Ingrese el monto que desea retirar: ";
+					cin >> monto;
+					CuentaBancaria* cuentaSeleccionada = banco->getcuentasbancarias()[opcionCuenta];
+					Transaccion<CuentaBancaria>* Tran = new Transaccion<CuentaBancaria>(monto, "Retiro", cuentaSeleccionada);
+					Tran->ejecutarTransaccion();
+				}
+				else {
+					cout << "Opción de cuenta inválida." << endl;
+				}
+				break;
 			}
 			else {
-				cout << "Opción de cuenta inválida." << endl;
+				cout << "Debe ingresar un usuario primero" << endl;
 			}
-			break;
 		}
-
 		case 4: {
-
-
-			BancoLcf* banco = {};
-
-			banco->mostrarcuentas();
+			if (contador != 0) {
+				banco->mostrarcuentas();
+			}
+			else {
+				cout << "Debe ingresar un usuario primero" << endl;
+			}
 		}
-			break;
+			  break;
 
 		case 5: {
-			BancoLcf* banco = {};
-
-			banco->eliminarcuenta();
-		}
-
+			if (contador != 0) {
+				banco->eliminarcuenta();
+			}
+			else {
+				cout << "Debe ingresar un usuario primero" << endl;
+			}
+			break; 
 		case 6:
 			cout << "Saliendo..." << endl;
 			seguir = false;
@@ -213,6 +235,7 @@ void ejercicio1() {
 			break;
 		}
 
+		}
 	}
 }
 int main()

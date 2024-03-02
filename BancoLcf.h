@@ -5,14 +5,11 @@ using namespace std;
 #include <string>
 #include <vector>  
 #include <memory.h>
-class BancoLcf : public CuentaBancaria
+class BancoLcf 
 {
-private : 
-	vector <CuentaBancaria*> cuentasbancarias; 
-	int tipodecuenta = 0; 
 public : 
+	vector <CuentaBancaria*> cuentasbancarias; 
 	BancoLcf();
-	BancoLcf(double balance, int Numerodecuenta, string nombre); 
 	vector<CuentaBancaria*> getcuentasbancarias();
 	void setcuentasbancarias(vector<CuentaBancaria*> cuentasbancarias);
 	void agregarcuenta(CuentaBancaria* cuenta); 

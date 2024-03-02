@@ -16,10 +16,14 @@ void CuentadeAhorro::settasa(int Numerodecuenta)
 
 void CuentadeAhorro::depositar(double monto)
 {
-
-	double bono = monto * (tasa / 100.0);
-
-	setbalance((getbalance() + monto) + bono);
+	if (monto > 100000) {
+		double bono = monto * (tasa / 100.0);
+		setbalance((getbalance() + monto) + bono);
+		cout << "Se le sumron: " << (getbalance() + monto) + bono << ", a su cuenta" << endl; 
+	}
+	else {
+		cout << "El deposito no puede ser tan grande" << endl; 
+	}
 
 }
 
@@ -29,7 +33,8 @@ void CuentadeAhorro::retirar(double monto)
 		cout << "No tiene el balance suficiente" << endl; 
 	}
 	else {
-		setbalance(getbalance() + monto); 
+		setbalance(getbalance() - monto); 
+		cout << "Se le retiraron: " << (getbalance() - monto) << ", a su cuenta" << endl;
 	}
 
 

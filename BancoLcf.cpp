@@ -10,10 +10,6 @@ BancoLcf::BancoLcf()
 {
 }
 
-BancoLcf::BancoLcf(double balance = 0.0, int Numerodecuenta=0, string nombre= " ") :
-
-	CuentaBancaria(balance, Numerodecuenta, nombre)
-{}
 vector<CuentaBancaria*> BancoLcf::getcuentasbancarias()
 {
 	return cuentasbancarias;
@@ -45,19 +41,20 @@ void BancoLcf::eliminarcuenta()
 }
 void BancoLcf::mostrarcuentas()
 {
-	for (int i = 0; i < cuentasbancarias.size(); i++)
-	{
-		cout << "Usuario: " << i << endl; 
-		cout << "Nombre: " << cuentasbancarias[i]->getNombre() << endl;
-		cout << "Numero De cuenta: " << cuentasbancarias[i]->getNumerodecuenta() << endl;
-		cout << "Balance: " << cuentasbancarias[i]->getNumerodecuenta() << endl;
-	}
+    for (int i = 0; i < cuentasbancarias.size(); i++)
+    {
+        cout << "Usuario: " << i << endl;
+        cout << "Nombre: " << cuentasbancarias[i]->getNombre() << endl;
+        cout << "Numero De cuenta: " << cuentasbancarias[i]->getNumerodecuenta() << endl;
+        cout << "Balance: " << cuentasbancarias[i]->getbalance() << endl; 
+    }
 }
+
 
 BancoLcf::~BancoLcf()
 {
 	for (auto CuentaBancaria : cuentasbancarias) {
 		delete CuentaBancaria;
 	}
-	tipodecuenta = 0; 
+	
 }

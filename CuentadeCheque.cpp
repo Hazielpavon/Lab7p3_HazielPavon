@@ -22,16 +22,24 @@ void CuentadeCheque::setsobregiro(int Numerodecuenta)
 
 void CuentadeCheque::depositar(double monto)
 {
-	setbalance(getbalance()+monto);
+	if (monto > 100000) {
+		setbalance(getbalance() + monto);
+		cout << "Se le sumron: " << (getbalance() + monto)  << ", a su cuenta" << endl;
+	}
+	else {
+		cout << "El deposito no puede ser tan grande" << endl;
+	}
 }
 
 void CuentadeCheque::retirar(double monto)
 {
 	if (getbalance() < monto) {
 		setbalance((getbalance() - monto)-sobregiro);
+		cout << "Se le retiraron: " << ((getbalance() - monto) - sobregiro) << ", a su cuenta con el sobregiro" << endl;
 	}
 	else {
 		setbalance((getbalance() - monto));
+		cout << "Se le retiraron: " << (getbalance() - monto) << ", a su cuenta" << endl;
 	}
 }
 
